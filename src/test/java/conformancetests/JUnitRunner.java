@@ -5,31 +5,34 @@ package conformancetests;
  This library is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation; either version 2.1 of the License, or (at your option) any later version.
  This library is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for more details.
  You should have received a copy of the GNU Lesser General Public License along with this library; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301 USA*/
-import static org.junit.Assert.*;
+import org.semanticweb.owlapi.apibinding.OWLManager;
+import org.semanticweb.owlapi.io.OWLFunctionalSyntaxOntologyFormat;
+import org.semanticweb.owlapi.io.StringDocumentSource;
+import org.semanticweb.owlapi.io.SystemOutDocumentTarget;
+import org.semanticweb.owlapi.model.*;
+import org.semanticweb.owlapi.profiles.OWL2DLProfile;
+import org.semanticweb.owlapi.profiles.OWLProfileReport;
+import org.semanticweb.owlapi.reasoner.OWLReasoner;
+import org.semanticweb.owlapi.reasoner.OWLReasonerFactory;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-import org.semanticweb.owlapi.apibinding.OWLManager;
-import org.semanticweb.owlapi.io.OWLFunctionalSyntaxOntologyFormat;
-import org.semanticweb.owlapi.io.StringDocumentSource;
-import org.semanticweb.owlapi.io.SystemOutDocumentTarget;
-import org.semanticweb.owlapi.model.OWLAxiom;
-import org.semanticweb.owlapi.model.OWLException;
-import org.semanticweb.owlapi.model.OWLOntology;
-import org.semanticweb.owlapi.model.OWLOntologyChangeListener;
-import org.semanticweb.owlapi.model.OWLOntologyCreationException;
-import org.semanticweb.owlapi.model.OWLOntologyStorageException;
-import org.semanticweb.owlapi.profiles.OWL2DLProfile;
-import org.semanticweb.owlapi.profiles.OWLProfileReport;
-import org.semanticweb.owlapi.reasoner.OWLReasoner;
-import org.semanticweb.owlapi.reasoner.OWLReasonerFactory;
+import static conformancetests.JUnitRunner.AssertOrAssume.USE_ASSERT;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assume.assumeFalse;
+import static org.junit.Assume.assumeTrue;
 
 @SuppressWarnings({ "javadoc", "null" })
 public class JUnitRunner {
 
+    public enum AssertOrAssume {
+        USE_ASSERT,
+        USE_ASSUME
+    }
     private static final int _10000 = 1000000;
 
     public static void print(String premise) throws OWLException {
@@ -47,14 +50,17 @@ public class JUnitRunner {
     private final String premise;
     private final String consequence;
     private final String description;
+    private final boolean asserting;
 
     public JUnitRunner(String premise, String consequence, String testId,
-            TestClasses t, String description) {
+                       TestClasses t, String description, AssertOrAssume assertOrAssume) {
         this.testId = testId;
         this.premise = premise;
         this.consequence = consequence;
         this.description = description;
         this.t = t;
+        this.asserting = assertOrAssume == USE_ASSERT;
+
     }
 
     public void setReasonerFactory(OWLReasonerFactory f) {
@@ -168,6 +174,21 @@ public class JUnitRunner {
             return null;
         }
     }
+    private void checkTrue(String message, boolean actual) {
+        if(asserting) {
+            assertTrue(message,actual);
+        } else {
+            assumeTrue(message, actual);
+        }
+    }
+
+    private void checkFalse(String message, boolean actual) {
+        if(asserting) {
+            assertFalse(message, actual);
+        } else {
+            assumeFalse(message, actual);
+        }
+    }
 
     private void actual(OWLOntology conclusionOntology, StringBuilder b,
             OWLReasoner reasoner) {
@@ -177,7 +198,8 @@ public class JUnitRunner {
                 if (!consistent) {
                     String message = b.toString()
                             + logTroubles(true, consistent, t, null);
-                    assertTrue(message, consistent);
+
+                    checkTrue(message, consistent);
                 }
             }
                 break;
@@ -186,7 +208,7 @@ public class JUnitRunner {
                 if (consistent) {
                     String message = b.toString()
                             + logTroubles(false, consistent, t, null);
-                    assertFalse(message, consistent);
+                    checkFalse(message, consistent);
                 }
             }
                 break;
@@ -195,7 +217,7 @@ public class JUnitRunner {
                 if (!consistent) {
                     String message = b.toString()
                             + logTroubles(true, consistent, t, null);
-                    assertTrue(message, consistent);
+                    checkTrue(message, consistent);
                 }
                 boolean entailed = false;
                 for (OWLAxiom ax : conclusionOntology.getLogicalAxioms()) {
@@ -205,7 +227,7 @@ public class JUnitRunner {
                         b.append(logTroubles(false, entailed, t, ax));
                     }
                 }
-                assertFalse(b.toString(), entailed);
+                checkFalse(b.toString(), entailed);
             }
                 break;
             case POSITIVE_IMPL: {
@@ -213,7 +235,7 @@ public class JUnitRunner {
                 if (!consistent) {
                     String message = b.toString()
                             + logTroubles(true, consistent, t, null);
-                    assertTrue(message, consistent);
+                    checkTrue(message, consistent);
                 }
                 boolean entailed = true;
                 for (OWLAxiom ax : conclusionOntology.getLogicalAxioms()) {
@@ -223,7 +245,7 @@ public class JUnitRunner {
                         b.append(logTroubles(true, entailed, t, ax));
                     }
                 }
-                assertTrue(b.toString(), entailed);
+                checkTrue(b.toString(), entailed);
             }
                 break;
             default:

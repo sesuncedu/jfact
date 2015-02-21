@@ -5,14 +5,15 @@ package conformancetests;
  This library is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation; either version 2.1 of the License, or (at your option) any later version.
  This library is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for more details.
  You should have received a copy of the GNU Lesser General Public License along with this library; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301 USA*/
+import org.junit.Ignore;
 import org.junit.Test;
 
 import testbase.TestBase;
 
 @SuppressWarnings("javadoc")
 public class WebOnt661 extends TestBase {
-
     @Test
+    @Ignore("too slow for unit test")
     @Changed
     public void testWebOnt_description_logic_661() {
         String premise = "<rdf:RDF xmlns:oiled=\"http://oiled.man.example.net/test#\" xmlns:owl=\"http://www.w3.org/2002/07/owl#\" xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\"\n"
@@ -367,7 +368,7 @@ public class WebOnt661 extends TestBase {
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "DL Test: k_branch\n"
                 + "ABox test from DL98 systems comparison.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }

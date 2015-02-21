@@ -33,6 +33,6 @@ public class JUnitRunnerFromFile extends JUnitRunner {
 
     public JUnitRunnerFromFile(File premise, File consequence, String testId,
             TestClasses t, String description) {
-        super(readFile(premise), readFile(consequence), testId, t, description);
+        super(readFile(premise), readFile(consequence), testId, t, description, AssertOrAssume.USE_ASSERT);
     }
 }

@@ -20,7 +20,7 @@ public class WebOnt_miscellaneous_002 extends TestBase {
         TestClasses tc = TestClasses.valueOf("CONSISTENCY");
         String d = "Food example taken from the guide. Note that this is the same as the ontology http://www.w3.org/2002/03owlt/miscellaneous/consistent002 imported in other tests.";
         JUnitRunner r = new JUnitRunner(premise1 + premise2 + premise3
-                + premise4, conclusion, id, tc, d);
+                + premise4, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }

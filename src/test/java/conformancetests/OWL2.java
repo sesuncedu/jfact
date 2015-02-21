@@ -24,7 +24,7 @@ public class OWL2 extends TestBase {
         String id = "owl2_rl_anonymous_individual";
         TestClasses tc = TestClasses.valueOf("CONSISTENCY");
         String d = "OWL 2 RL allows anonymous individual.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -44,7 +44,7 @@ public class OWL2 extends TestBase {
         String id = "owl2_rl_invalid_leftside_allvaluesfrom";
         TestClasses tc = TestClasses.valueOf("CONSISTENCY");
         String d = "OWL 2 RL does not allow left side allValuesFrom in a subClassOf axiom.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -63,7 +63,7 @@ public class OWL2 extends TestBase {
         String id = "owl2_rl_invalid_leftside_maxcard";
         TestClasses tc = TestClasses.valueOf("CONSISTENCY");
         String d = "Invalid OWL 2 RL due to maxCardinality usage.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -81,7 +81,7 @@ public class OWL2 extends TestBase {
         String id = "owl2_rl_invalid_oneof";
         TestClasses tc = TestClasses.valueOf("CONSISTENCY");
         String d = "OWL 2 RL does not permit owl:oneOf to define a named class (it can be used as a subclass expression).";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -101,7 +101,7 @@ public class OWL2 extends TestBase {
         String id = "owl2_rl_invalid_owlreal";
         TestClasses tc = TestClasses.valueOf("CONSISTENCY");
         String d = "Invalid OWL 2 RL because owl:real is used.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -122,7 +122,7 @@ public class OWL2 extends TestBase {
         String id = "owl2_rl_invalid_rightside_somevaluesfrom";
         TestClasses tc = TestClasses.valueOf("CONSISTENCY");
         String d = "This is not a valid OWL 2 RL because someValuesFrom shows up on the right hand side of a SubClassOf axiom.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -142,7 +142,7 @@ public class OWL2 extends TestBase {
         String id = "owl2_rl_invalid_rightside_unionof";
         TestClasses tc = TestClasses.valueOf("CONSISTENCY");
         String d = "Incorrect OWL 2 RL syntax. unionOf shows up at the right hand side of a SubClassOf axiom.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -160,7 +160,7 @@ public class OWL2 extends TestBase {
         String id = "owl2_rl_invalid_unionof";
         TestClasses tc = TestClasses.valueOf("CONSISTENCY");
         String d = "OWL 2 RL does not allow owl:unionOf to define a named class (it can be used as a subclass expression).";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -186,7 +186,7 @@ public class OWL2 extends TestBase {
         String id = "owl2_rl_rules_fp_differentFrom";
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "This test checks the interaction between an OWL functional property and differentFrom assertions.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -213,7 +213,7 @@ public class OWL2 extends TestBase {
         String id = "owl2_rl_rules_ifp_differentFrom";
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "This test checks the interaction between inverse functional property and differentFrom assertions.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -235,7 +235,7 @@ public class OWL2 extends TestBase {
         String id = "owl2_rl_valid_mincard";
         TestClasses tc = TestClasses.valueOf("CONSISTENCY");
         String d = "OWL 2 RL does not allow min cardinality";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -257,7 +257,7 @@ public class OWL2 extends TestBase {
         String id = "owl2_rl_valid_oneof";
         TestClasses tc = TestClasses.valueOf("CONSISTENCY");
         String d = "A valid usage of oneOf in OWL 2 RL";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -278,7 +278,7 @@ public class OWL2 extends TestBase {
         String id = "owl2_rl_valid_rightside_allvaluesfrom";
         TestClasses tc = TestClasses.valueOf("CONSISTENCY");
         String d = "Valid RL usage of allValuesFrom.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -306,7 +306,7 @@ public class OWL2 extends TestBase {
         String id = "New_Feature_AnnotationAnnotations_001";
         TestClasses tc = TestClasses.valueOf("CONSISTENCY");
         String d = "Demonstrates annotation of an annotation.  Adapted from an example in the Mapping to RDF Graphs document.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -329,7 +329,7 @@ public class OWL2 extends TestBase {
         String id = "New_Feature_AsymmetricProperty_001";
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "Demonstrates use of an asymmetric object property axiom to cause a trivial inconsistency based on the example in the Structural Specification and Functional-Style Syntax document.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -358,7 +358,7 @@ public class OWL2 extends TestBase {
         String id = "New_Feature_AxiomAnnotations_001";
         TestClasses tc = TestClasses.valueOf("CONSISTENCY");
         String d = "Demonstrates axiom annotation based on an example in the Mapping to RDF Graphs document.  The axiom being annotated here generates a main triple when mapped to RDF.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -381,7 +381,7 @@ public class OWL2 extends TestBase {
         String id = "New_Feature_BottomDataProperty_001";
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "Demonstrates use of the bottom data property to create an inconsistency.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -404,7 +404,7 @@ public class OWL2 extends TestBase {
         String id = "New_Feature_BottomObjectProperty_001";
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "Demonstrates use of the bottom object property to create an inconsistency.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -440,7 +440,7 @@ public class OWL2 extends TestBase {
         String id = "New_Feature_DisjointObjectProperties_001";
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "Demonstrates use of a disjoint object properties axiom to infer that two individuals are different based on the example in the Structural Specification and Functional-Style Syntax document.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -489,7 +489,7 @@ public class OWL2 extends TestBase {
         String id = "New_Feature_DisjointObjectProperties_002";
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "A modification of test New-Feature-DisjointObjectProperties-001 to demonstrate a ternary disjoint object properties axiom.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -526,7 +526,7 @@ public class OWL2 extends TestBase {
         String id = "New_Feature_DisjointUnion_001";
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "Demonstrates a disjoint union axiom based on the example in the Structural Specification and Functional-Style Syntax document.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -546,7 +546,7 @@ public class OWL2 extends TestBase {
         String id = "New_Feature_IrreflexiveProperty_001";
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "Demonstrates use of an irreflexive object property axiom to cause a trivial inconsistency based on the example in the Structural Specification and Functional-Style Syntax document.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -573,7 +573,7 @@ public class OWL2 extends TestBase {
         String id = "New_Feature_NegativeDataPropertyAssertion_001";
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "Demonstrates use of a negative data property assertion to create a trivial inconsistency based on an example in the Structural Specification and Functional-Style Syntax document.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -599,7 +599,7 @@ public class OWL2 extends TestBase {
         String id = "New_Feature_NegativeObjectPropertyAssertion_001";
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "Demonstrates use of a negative object property assertion to create a trivial inconsistency based on an example in the Structural Specification and Functional-Style Syntax document.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -632,7 +632,7 @@ public class OWL2 extends TestBase {
         String id = "New_Feature_ObjectPropertyChain_001";
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "Demonstrates an object property chain in a subproperty axiom based on the example in the Structural Specification and Functional-Style Syntax document.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -664,7 +664,7 @@ public class OWL2 extends TestBase {
         String id = "New_Feature_ObjectPropertyChain_BJP_004";
         TestClasses tc = TestClasses.valueOf("NEGATIVE_IMPL");
         String d = "A test of an interaction between a role chain +hierarchy and transitivity axioms.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -710,7 +710,7 @@ public class OWL2 extends TestBase {
         String id = "New_Feature_ObjectQCR_001";
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "Demonstrates a qualified minimum cardinality object property restriction based on example in the Structural Specification and Functional-Style Syntax document.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -759,7 +759,7 @@ public class OWL2 extends TestBase {
         String id = "New_Feature_ObjectQCR_002";
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "Demonstrates a qualified maximum cardinality object property restriction adapted from example in the Structural Specification and Functional-Style Syntax document.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -774,7 +774,7 @@ public class OWL2 extends TestBase {
         String id = "FS2RDF_different_individuals_2_ar";
         TestClasses tc = TestClasses.valueOf("CONSISTENCY");
         String d = "Functional syntax to RDFXML translation of ontology consisting of a 2 argument DifferentIndividuals";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -793,7 +793,7 @@ public class OWL2 extends TestBase {
         String id = "FS2RDF_different_individuals_3_ar";
         TestClasses tc = TestClasses.valueOf("CONSISTENCY");
         String d = "Functional syntax to RDFXML translation of ontology consisting of a 3 argument DifferentIndividuals";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -815,7 +815,7 @@ public class OWL2 extends TestBase {
         String id = "FS2RDF_no_builtin_prefixes_ar";
         TestClasses tc = TestClasses.valueOf("CONSISTENCY");
         String d = "Functional syntax to RDFXML checking that there aren't builtin prefixes for xsd, rdf, rdfs, owl";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -830,7 +830,7 @@ public class OWL2 extends TestBase {
         String id = "FS2RDF_same_individual_2_ar";
         TestClasses tc = TestClasses.valueOf("CONSISTENCY");
         String d = "Functional syntax to RDFXML translation of ontology consisting of a 2 argument SameIndividual";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -856,7 +856,7 @@ public class OWL2 extends TestBase {
         String id = "bnode2somevaluesfrom";
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "Shows that a BNode is an existential variable.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -883,7 +883,7 @@ public class OWL2 extends TestBase {
         String id = "chain2trans1";
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "A role chain can be a synonym for transitivity.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -911,7 +911,7 @@ public class OWL2 extends TestBase {
         String id = "Consistent_dateTime";
         TestClasses tc = TestClasses.valueOf("CONSISTENCY");
         String d = "The datatype restrictions leave exactly one dateTime value as dp filler for the individual a, so the ontology is consistent.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -931,7 +931,7 @@ public class OWL2 extends TestBase {
         String id = "consistent_integer_filler";
         TestClasses tc = TestClasses.valueOf("CONSISTENCY");
         String d = "The individual a is in the extension of the class A, which implies that it has a hasAge filler of 18 as integer, which is consistent with the all values from integer assertion for a.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -959,7 +959,7 @@ public class OWL2 extends TestBase {
         String id = "Datatype_DataComplementOf_001";
         TestClasses tc = TestClasses.valueOf("CONSISTENCY");
         String d = "Demonstrates that the complement of a datatype contains literals from other datatypes.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -983,7 +983,7 @@ public class OWL2 extends TestBase {
         String id = "Different_types_in_Datatype_Restrictions_and_Complement";
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "The individual a must have dp fillers that are in the sets {3, 4} and {2, 3} (different types are used, but shorts and ints are integers), but at the same time 3 is not allowed as a dp filler for a, which causes the inconsistency.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -1003,7 +1003,7 @@ public class OWL2 extends TestBase {
         String id = "inconsistent_integer_filler";
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "The individual has an asserted hasAge filler of 18 as integer. At the same time it is an instance of the negation of the class Eighteen, which implies that all hasAge fillers for a are not 18.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -1038,7 +1038,7 @@ public class OWL2 extends TestBase {
         String id = "DisjointClasses_001";
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "Demonstrates a binary disjoint classes axiom based on example in the Structural Specification and Functional-Style Syntax document.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -1062,7 +1062,7 @@ public class OWL2 extends TestBase {
         String id = "DisjointClasses_002";
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "Demonstrates a binary disjoint classes axiom and class assertions causing an inconsistency based on example in the Structural Specification and Functional-Style Syntax document.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -1106,7 +1106,7 @@ public class OWL2 extends TestBase {
         String id = "DisjointClasses_003";
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "A modification of test DisjointClasses-001 to demonstrate a ternary disjoint classes axiom.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }

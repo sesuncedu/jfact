@@ -1017,7 +1017,7 @@ public class WebOnt_description_logic_209 extends TestBase {
         String d = "DL Test: k_poly\n"
                 + "ABox test from DL98 systems comparison.\n"
                 + "(Modified in light of implementation feedback, see test description-logic-208).";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         // r.printConsequence();
         r.run();

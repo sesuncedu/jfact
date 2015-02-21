@@ -207,7 +207,7 @@ public class WebOnt208 extends TestBase {
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "DL Test: k_poly\n"
                 + "ABox test from DL98 systems comparison.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }

@@ -61,7 +61,7 @@ public class Fixed extends TestBase {
         String id = "Consistent_owl_real_range_with_DataOneOf";
         TestClasses tc = TestClasses.valueOf("CONSISTENCY");
         String d = "The individual a must have either negative Infinity or 0 (-0 as integer is 0) as dp fillers and all dp successors must be from owl:real, which excludes negative infinity, but allows 0.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -85,7 +85,7 @@ public class Fixed extends TestBase {
         String id = "WebOnt_oneOf_004";
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "This test illustrates the use of dataRange in OWL DL. This test combines some of the ugliest features of XML, RDF and OWL.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -250,7 +250,7 @@ public class Fixed extends TestBase {
         String id = "Plus_and_Minus_Zero_Integer";
         TestClasses tc = TestClasses.valueOf("CONSISTENCY");
         String d = "For integers 0 and -0 are the same value, so the ontology is consistent.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         // r.getConfiguration().setLoggingActive(true);
         r.setReasonerFactory(factory());
         r.run();
@@ -269,7 +269,7 @@ public class Fixed extends TestBase {
         String id = "Plus_and_Minus_Zero_Integer";
         TestClasses tc = TestClasses.valueOf("CONSISTENCY");
         String d = "For integers 0 and -0 are the same value, so the ontology is consistent.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         // r.getConfiguration().setLoggingActive(true);
         r.setReasonerFactory(factory());
         r.run();
@@ -339,7 +339,7 @@ public class Fixed extends TestBase {
         String id = "Contradicting_datatype_Restrictions";
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "The individual a is in A and thus must have a dp filler that is an integer >= 4. Furthermore the dp fillers must be in the set {3, 4} and in the set {2, 3}. Although 3 is in both sets, 3 is not >= 4, which causes the inconsistency.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -411,7 +411,7 @@ public class Fixed extends TestBase {
         String id = "datatype_restriction_min_max_inconsistency";
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "The individual a is supposed to have an integer dp-successor >= 18, but all dp-successors must be <= 10, which is impossible.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         // r.getConfiguration().setLoggingActive(true);
         r.setReasonerFactory(factory());
         r.run();
@@ -431,7 +431,7 @@ public class Fixed extends TestBase {
         String id = "functionality_clash";
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "The property hasAge is functional, but the individual a has two distinct hasAge fillers.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -448,7 +448,7 @@ public class Fixed extends TestBase {
         String id = "inconsistent_datatypes";
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "The individual a is in the extension of the class A and is thus required to have a dp-successor that is an integer and at the same time all dp-successors are required to be strings, which causes the inconsistency.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -473,7 +473,7 @@ public class Fixed extends TestBase {
         String id = "rdfbased_sem_bool_intersection_inst_comp";
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "An individual, which is an instance of every component class of an intersection, is an instance of the intersection class expression.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -499,7 +499,7 @@ public class Fixed extends TestBase {
         String id = "rdfbased_sem_bool_intersection_term";
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "If a class is an intersection of other classes, then the original class is a subclass of each of the other classes.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -525,7 +525,7 @@ public class Fixed extends TestBase {
         String id = "rdfbased_sem_bool_union_inst_comp";
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "An individual, which is an instance of one of the component classes of a union, is an instance of the union class expression.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -551,7 +551,7 @@ public class Fixed extends TestBase {
         String id = "rdfbased_sem_bool_union_term";
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "If a class is a union of other classes, then each of the other classes are subclasses of the original class.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -568,7 +568,7 @@ public class Fixed extends TestBase {
         String id = "rdfbased_sem_char_functional_inst";
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "For two triples with the same functional property as their predicates and with the same subject, the objects are the same.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -587,7 +587,7 @@ public class Fixed extends TestBase {
         String id = "rdfbased_sem_enum_inst_included";
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "If a class defines an enumeration class expression from two individuals, than both individuals are instances of the class.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -604,7 +604,7 @@ public class Fixed extends TestBase {
         String id = "rdfbased_sem_eqdis_different_irrflxv";
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "Diversity of two individuals is irreflexive.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -623,7 +623,7 @@ public class Fixed extends TestBase {
         String id = "rdfbased_sem_eqdis_disclass_irrflxv";
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "Disjointness of two non-empty classes is irreflexive.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -641,7 +641,7 @@ public class Fixed extends TestBase {
         String id = "rdfbased_sem_eqdis_disprop_eqprop";
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "Two non-empty properties cannot both be equivalent and disjoint.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -658,7 +658,7 @@ public class Fixed extends TestBase {
         String id = "rdfbased_sem_eqdis_disprop_inst";
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "Triples with disjoint properties as their predicates have different subjects or different objects.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -676,7 +676,7 @@ public class Fixed extends TestBase {
         String id = "rdfbased_sem_eqdis_disprop_irrflxv";
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "Disjointness of two non-empty properties is irreflexive.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -695,7 +695,7 @@ public class Fixed extends TestBase {
         String id = "rdfbased_sem_eqdis_eqclass_subclass_1";
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "Two equivalent classes are sub classes of each other.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -719,7 +719,7 @@ public class Fixed extends TestBase {
         String id = "rdfbased_sem_eqdis_sameas_subst";
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "Equality of two individuals allows for substituting the subject, predicate and object of an RDF triple by an equal individual.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -738,7 +738,7 @@ public class Fixed extends TestBase {
         String id = "rdfbased_sem_eqdis_sameas_sym";
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "Equality of two individuals is symmetrical.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -752,7 +752,7 @@ public class Fixed extends TestBase {
         String id = "rdfbased_sem_eqdis_sameas_trans";
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "Equality of two individuals is transitive.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -771,7 +771,7 @@ public class Fixed extends TestBase {
         String id = "rdfbased_sem_ndis_alldisjointproperties_fw";
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "All the members of an owl:AllDisjointProperties construct are mutually disjoint properties.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -788,7 +788,7 @@ public class Fixed extends TestBase {
         String id = "rdfbased_sem_npa_dat_fw";
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "A negative data property assertion DNPA(s p \"data\") must not occur together with the corresponding positive data property assertion s p \"data\".";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -808,7 +808,7 @@ public class Fixed extends TestBase {
         String id = "rdfbased_sem_rdfs_domain_cond";
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "The left hand side individual in a given triple is entailed to be an instance of the domain of the predicate.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -828,7 +828,7 @@ public class Fixed extends TestBase {
         String id = "rdfbased_sem_rdfs_range_cond";
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "The right hand side individual in a given triple is entailed to be an instance of the range of the predicate.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -859,7 +859,7 @@ public class Fixed extends TestBase {
         String id = "rdfbased_sem_restrict_allvalues_cmp_class";
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "A universal restriction on some property and some class is a sub class of another universal restriction on the same property but on a super class.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -890,7 +890,7 @@ public class Fixed extends TestBase {
         String id = "rdfbased_sem_restrict_allvalues_cmp_prop";
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "A universal restriction on some property and some class is a sub class of another universal restriction on the same class but on a sub property.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -915,7 +915,7 @@ public class Fixed extends TestBase {
         String id = "rdfbased_sem_restrict_allvalues_inst_obj";
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "If an individual w is an instance of the universal restriction on property p and class c, then for any triple w p x follows that x is an instance of c.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -945,7 +945,7 @@ public class Fixed extends TestBase {
         String id = "rdfbased_sem_restrict_hasvalue_cmp_prop";
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "A has-value restriction on some property and some value is a sub class of another has-value restriction on the same value but on a super property.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -970,7 +970,7 @@ public class Fixed extends TestBase {
         String id = "rdfbased_sem_restrict_hasvalue_inst_obj";
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "If an individual w is an instance of the has-value restriction on property p to value u, then the triple w p u can be entailed.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -994,7 +994,7 @@ public class Fixed extends TestBase {
         String id = "rdfbased_sem_restrict_hasvalue_inst_subj";
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "For a triple w p u, the individual w is an instance of the has-value restriction on p to u.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -1018,7 +1018,7 @@ public class Fixed extends TestBase {
         String id = "rdfbased_sem_restrict_maxcard_inst_obj_one";
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "If an individual w is an instance of the max-1-cardinality restriction on property p, and if there are triples w p x1 and w p x2, then x1 equals x2.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -1038,7 +1038,7 @@ public class Fixed extends TestBase {
         String id = "rdfbased_sem_restrict_maxcard_inst_obj_zero";
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "If an individual w is an instance of the max-0-cardinality restriction on property p, then there cannot be any triple w p x.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -1063,7 +1063,7 @@ public class Fixed extends TestBase {
         String id = "rdfbased_sem_restrict_maxqcr_inst_obj_one";
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "If an individual w is an instance of the max-1-QCR on property p to class c, and if there are triples w p x1 and w p x2, with x1 and x2 being in c, then x1 equals x2.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -1085,7 +1085,7 @@ public class Fixed extends TestBase {
         String id = "rdfbased_sem_restrict_maxqcr_inst_obj_zero";
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "If an individual w is an instance of the max-0-QCR on property p to class c, then there cannot be any triple w p x with x in c.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -1116,7 +1116,7 @@ public class Fixed extends TestBase {
         String id = "rdfbased_sem_restrict_somevalues_cmp_class";
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "An existential restriction on some property and some class is a sub class of another existential restriction on the same property but on a super class.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -1147,7 +1147,7 @@ public class Fixed extends TestBase {
         String id = "rdfbased_sem_restrict_somevalues_cmp_prop";
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "An existential restriction on some property and some class is a sub class of another existential restriction on the same class but on a super property.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -1174,7 +1174,7 @@ public class Fixed extends TestBase {
         String id = "rdfbased_sem_restrict_somevalues_inst_subj";
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "For a triple w p x, with x being an instance of a class c, the individual w is an instance of the existential restriction on p to c.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -1193,7 +1193,7 @@ public class Fixed extends TestBase {
         String id = "string_integer_clash";
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "The range of hasAge is integer, but a has an asserted string hasAge filler.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         // r.getConfiguration().setLoggingActive(true);
         r.run();
@@ -1265,7 +1265,7 @@ public class Fixed extends TestBase {
         String id = "WebOnt_description_logic_501";
         TestClasses tc = TestClasses.valueOf("CONSISTENCY");
         String d = "This is the classic 3 SAT problem.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -1336,7 +1336,7 @@ public class Fixed extends TestBase {
         String id = "WebOnt_description_logic_502";
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "This is the classic 3 SAT problem.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -1458,7 +1458,7 @@ public class Fixed extends TestBase {
         String id = "Contradicting_dateTime_restrictions";
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "The individual a must have a dp filler that is a date from 2007, but the restrictions on dp allow only values from 2008, which makes the ontology inconsistent.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -1482,7 +1482,7 @@ public class Fixed extends TestBase {
         String id = "Inconsistent_Data_Complement_with_the_Restrictions";
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "The individual a must have dp fillers that are in the sets {3, 4} and {2, 3}, but at the same time 3 is not allowed as a dp filler for a, which causes the inconsistency.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -1501,7 +1501,7 @@ public class Fixed extends TestBase {
         String id = "Plus_and_Minus_Zero_are_Distinct";
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "For floats and double, +0.0 and -0.0 are distinct values, which contradicts the functionality for numberOfChildren.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -1523,7 +1523,7 @@ public class Fixed extends TestBase {
         String id = "Inconsistent_Byte_Filler";
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "The individual a must have the integer 6542145 as dp filler, but all fillers must also be bytes. Since 6542145 is not byte, the ontology is inconsistent.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }

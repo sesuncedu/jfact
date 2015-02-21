@@ -5,27 +5,16 @@ package conformancetests;
  This library is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation; either version 2.1 of the License, or (at your option) any later version.
  This library is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for more details.
  You should have received a copy of the GNU Lesser General Public License along with this library; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301 USA*/
-import static org.junit.Assert.*;
-
-import org.junit.Ignore;
 import org.junit.Test;
 import org.semanticweb.owlapi.apibinding.OWLManager;
-import org.semanticweb.owlapi.model.IRI;
-import org.semanticweb.owlapi.model.OWLClass;
-import org.semanticweb.owlapi.model.OWLDataFactory;
-import org.semanticweb.owlapi.model.OWLDataProperty;
-import org.semanticweb.owlapi.model.OWLObjectAllValuesFrom;
-import org.semanticweb.owlapi.model.OWLObjectMaxCardinality;
-import org.semanticweb.owlapi.model.OWLObjectMinCardinality;
-import org.semanticweb.owlapi.model.OWLObjectProperty;
-import org.semanticweb.owlapi.model.OWLOntology;
-import org.semanticweb.owlapi.model.OWLOntologyCreationException;
-import org.semanticweb.owlapi.model.OWLOntologyManager;
+import org.semanticweb.owlapi.model.*;
 import org.semanticweb.owlapi.reasoner.InferenceType;
 import org.semanticweb.owlapi.reasoner.OWLReasoner;
 import org.semanticweb.owlapi.vocab.OWL2Datatype;
-
 import testbase.TestBase;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 @SuppressWarnings("javadoc")
 public class WebOnt extends TestBase {
@@ -42,7 +31,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_AnnotationProperty_003";
         TestClasses tc = TestClasses.valueOf("CONSISTENCY");
         String d = "URI references used in annotations don't need to be typed.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -59,7 +48,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_AnnotationProperty_004";
         TestClasses tc = TestClasses.valueOf("CONSISTENCY");
         String d = "AnnotationProperty's in OWL Lite and OWL DL, may not have range constraints.  They are permitted in OWL 2 DL.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -86,7 +75,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_I4_5_001";
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "An example combinging owl:oneOf and owl:inverseOf.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -108,7 +97,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_I4_5_002";
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "An example combining owl:oneOf and owl:inverseOf.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -126,7 +115,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_I4_6_005_Direct";
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "Under the direct semantics, test WebOnt-I4.6-005 must be treated as a positive entailment test because the direct semantics ignore annotations in the conclusion ontology.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -147,7 +136,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_I5_24_003";
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "This is a typical definition of range from description logic.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -169,7 +158,7 @@ public class WebOnt extends TestBase {
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "This is a typical definition of range from description logic.\n"
                 + "It works both ways.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -187,7 +176,7 @@ public class WebOnt extends TestBase {
         TestClasses tc = TestClasses.valueOf("CONSISTENCY");
         String d = "Structure sharing was not permitted in OWL DL, between a class description\n"
                 + "and a type triple, but is permitted in OWL 2 DL.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -205,7 +194,7 @@ public class WebOnt extends TestBase {
         String d = "Structure sharing was not permitted in OWL DL, between an\n"
                 + "owl:equivalentClass triple\n"
                 + "and a type triple, but is permitted in OWL 2 DL.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -222,7 +211,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_I5_26_003";
         TestClasses tc = TestClasses.valueOf("CONSISTENCY");
         String d = "Structure sharing was not permitted in OWL DL, between two class descriptions, but is permitted in OWL 2 DL.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -239,7 +228,7 @@ public class WebOnt extends TestBase {
         TestClasses tc = TestClasses.valueOf("CONSISTENCY");
         String d = "Structure sharing was not permitted in OWL DL, between a class description and an\n"
                 + "owl:disjointWith triple, but is permitted in OWL 2 DL.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -255,7 +244,7 @@ public class WebOnt extends TestBase {
         TestClasses tc = TestClasses.valueOf("CONSISTENCY");
         String d = "Structure sharing was not permitted in OWL DL, between an owl:equivalentClass triple and an\n"
                 + "owl:disjointWith triple, but is permitted in OWL 2 DL.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -277,7 +266,7 @@ public class WebOnt extends TestBase {
     }
 
     @Test
-    @Ignore("Conclusion does not contain axioms")
+    //@Ignore("Conclusion does not contain axioms")
     public void testWebOnt_I5_26_010() {
         String premise = "<rdf:RDF xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\" xmlns:owl=\"http://www.w3.org/2002/07/owl#\" xmlns:first=\"http://www.w3.org/2002/03owlt/I5.26/premises010#\" xml:base=\"http://www.w3.org/2002/03owlt/I5.26/premises010\" ><owl:Ontology/><owl:ObjectProperty rdf:ID=\"p\" /></rdf:RDF>";
         String conclusion = "<rdf:RDF xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\" xmlns:owl=\"http://www.w3.org/2002/07/owl#\" xml:base=\"http://www.w3.org/2002/03owlt/I5.26/conclusions010\" >\n"
@@ -292,7 +281,7 @@ public class WebOnt extends TestBase {
                 + " ObjectProperty( first:p )\n"
                 + "This is trivially true given that first:p is an \n"
                 + "individualvaluedPropertyID.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSUME);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -309,7 +298,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_I5_2_001";
         TestClasses tc = TestClasses.valueOf("CONSISTENCY");
         String d = "A class like owl:Nothing can be defined using OWL Lite restrictions.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -329,7 +318,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_I5_2_002";
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "A class like owl:Nothing can be defined using OWL Lite restrictions.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -349,7 +338,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_I5_2_003";
         TestClasses tc = TestClasses.valueOf("CONSISTENCY");
         String d = "The complement of a class can be defined using OWL Lite restrictions.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -374,7 +363,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_I5_2_004";
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "The complement of a class can be defined using OWL Lite restrictions.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -401,7 +390,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_I5_2_005";
         TestClasses tc = TestClasses.valueOf("CONSISTENCY");
         String d = "The union of two classes can be defined using OWL Lite restrictions, and owl:intersectionOf.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -434,7 +423,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_I5_2_006";
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "The union of two classes can be defined using OWL Lite restrictions, and owl:intersectionOf.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -451,7 +440,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_I5_3_006";
         TestClasses tc = TestClasses.valueOf("CONSISTENCY");
         String d = "A minimal OWL Lite version of <a xmlns=\"http://www.w3.org/1999/xhtml\" href=\"#I5.3-005\">test 005</a>.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -467,7 +456,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_I5_3_008";
         TestClasses tc = TestClasses.valueOf("CONSISTENCY");
         String d = "An OWL Lite version of <a xmlns=\"http://www.w3.org/1999/xhtml\" href=\"#I5.3-007\">test 007</a>.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -483,7 +472,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_I5_3_010";
         TestClasses tc = TestClasses.valueOf("CONSISTENCY");
         String d = "Classes could not be the object of regular properties in OWL DL.  This ontology is permissible in OWL 2 DL due to class / individual punning.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -499,7 +488,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_I5_3_011";
         TestClasses tc = TestClasses.valueOf("CONSISTENCY");
         String d = "Classes can be the object of annotation properties in OWL Lite and DL.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -517,7 +506,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_I5_5_005";
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "This test exhibits the effect of the comprehension principles in OWL Full.  The conclusion ontology only contains a class declaration, ObjectUnionOf class expression does not appear in an axiom.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -582,7 +571,7 @@ public class WebOnt extends TestBase {
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "The empty graph entails that xsd:integer and xsd:string\n"
                 + "are a rdfs:Datatype";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -611,7 +600,7 @@ public class WebOnt extends TestBase {
                 + "and object denotes a resource\n"
                 + "which is the object of two prop triples, then the subjects\n"
                 + "of these triples have the same denotation.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -626,7 +615,7 @@ public class WebOnt extends TestBase {
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "The triple asserts something of type owl:Nothing, however\n"
                 + "that is the empty class.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -656,7 +645,7 @@ public class WebOnt extends TestBase {
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "This is a variation of <a xmlns=\"http://www.w3.org/1999/xhtml\" href=\"#equivalentClass-001\">equivalentClass-001</a>,\n"
                 + "showing the use of owl:Ontology triples in the premises and conclusions.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -678,7 +667,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_Restriction_001";
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "This test shows the syntax for using the same restriction twice in OWL Lite.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -699,7 +688,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_Restriction_002";
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "This test shows syntax that was not permitted in OWL Lite or OWL DL for using the same restriction twice, but is permitted in OWL 2 DL.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -720,7 +709,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_Restriction_003";
         TestClasses tc = TestClasses.valueOf("CONSISTENCY");
         String d = "This test shows syntax that was not permitted in OWL Lite or OWL DL for using the same restriction twice, but is permitted in OWL 2 DL.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -742,7 +731,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_Restriction_004";
         TestClasses tc = TestClasses.valueOf("CONSISTENCY");
         String d = "This test shows OWL Lite syntax for using two equivalent restrictions.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -766,7 +755,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_SymmetricProperty_002";
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "Test illustrating extensional semantics of owl:SymmetricProperty.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -786,7 +775,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_SymmetricProperty_003";
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "A Lite version of test <a xmlns=\"http://www.w3.org/1999/xhtml\" href=\"#SymmetricProperty-001\">001</a>.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -803,7 +792,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_Thing_003";
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "The extension of OWL Thing may not be empty.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -818,7 +807,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_Thing_004";
         TestClasses tc = TestClasses.valueOf("CONSISTENCY");
         String d = "The extension of OWL Thing may be a singleton in OWL DL.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -846,7 +835,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_TransitiveProperty_002";
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "Test illustrating extensional semantics of owl:TransitiveProperty.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -860,7 +849,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_backwardCompatibleWith_002";
         TestClasses tc = TestClasses.valueOf("CONSISTENCY");
         String d = "In OWL Lite and DL the subject and object of a triple with predicate owl:backwardCompatibleWith must both be explicitly typed as owl:Ontology.  In OWL 2, this RDF graph parses to a single ontology with URI http://www.example.org/ and an annotation assertion between a blank node and that URI.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -883,7 +872,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_cardinality_001";
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "An owl:cardinality constraint is simply shorthand for a pair of owl:minCardinality and owl:maxCardinality constraints.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -906,7 +895,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_cardinality_002";
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "An owl:cardinality constraint is simply shorthand for a pair of owl:minCardinality and owl:maxCardinality constraints.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -929,7 +918,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_cardinality_003";
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "An owl:cardinality constraint is simply shorthand for a pair of owl:minCardinality and owl:maxCardinality constraints.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -952,7 +941,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_cardinality_004";
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "An owl:cardinality constraint is simply shorthand for a pair of owl:minCardinality and owl:maxCardinality constraints.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -972,7 +961,7 @@ public class WebOnt extends TestBase {
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "DL Test: fact1.1\n" + "If a, b and c are disjoint, then:\n"
                 + "(a and b) or (b and c) or (c and a)\n" + "is unsatisfiable.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -992,7 +981,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_description_logic_002";
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "DL Test: fact2.1";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -1016,7 +1005,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_description_logic_003";
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "DL Test: fact3.1";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -1049,7 +1038,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_description_logic_004";
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "DL Test: fact4.1";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -1082,7 +1071,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_description_logic_005";
         TestClasses tc = TestClasses.valueOf("CONSISTENCY");
         String d = "DL Test: fact4.2";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -1105,7 +1094,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_description_logic_006";
         TestClasses tc = TestClasses.valueOf("CONSISTENCY");
         String d = "DL Test: t1.1";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -1128,7 +1117,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_description_logic_007";
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "DL Test: t1.2";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -1151,7 +1140,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_description_logic_008";
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "DL Test: t1.3";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -1177,7 +1166,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_description_logic_009";
         TestClasses tc = TestClasses.valueOf("CONSISTENCY");
         String d = "DL Test: t10.1";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -1203,7 +1192,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_description_logic_010";
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "DL Test: t10.2";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -1229,7 +1218,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_description_logic_011";
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "DL Test: t10.3";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -1255,7 +1244,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_description_logic_012";
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "DL Test: t10.4";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -1281,7 +1270,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_description_logic_013";
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "DL Test: t10.5";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -1301,7 +1290,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_description_logic_014";
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "DL Test: t11.1";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -1322,7 +1311,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_description_logic_015";
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "DL Test: t12.1";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -1345,7 +1334,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_description_logic_016";
         TestClasses tc = TestClasses.valueOf("CONSISTENCY");
         String d = "DL Test: t2.1";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -1368,7 +1357,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_description_logic_017";
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "DL Test: t2.2";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -1392,7 +1381,7 @@ public class WebOnt extends TestBase {
         TestClasses tc = TestClasses.valueOf("CONSISTENCY");
         String d = "DL Test: t3.1\n"
                 + "There are 90 possible partitions in the satisfiable case";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -1416,7 +1405,7 @@ public class WebOnt extends TestBase {
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "DL Test: t3.2\n"
                 + "There are 301 possible partitions in the unsatisfiable case";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -1440,7 +1429,7 @@ public class WebOnt extends TestBase {
         TestClasses tc = TestClasses.valueOf("CONSISTENCY");
         String d = "DL Test: t3a.1\n"
                 + "there are 1,701 possible partitions in the satisfiable case";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -1464,7 +1453,7 @@ public class WebOnt extends TestBase {
         TestClasses tc = TestClasses.valueOf("CONSISTENCY");
         String d = "DL Test: t3a.2\n"
                 + "There are 7,770 possible partitions in the unsatisfiable case";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -1488,7 +1477,7 @@ public class WebOnt extends TestBase {
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "DL Test: t3a.3\n"
                 + "There are 42,525 possible partitions in the satisfiable case";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -1513,7 +1502,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_description_logic_023";
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "DL Test: t4.1\n" + "Dynamic blocking example";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -1537,7 +1526,7 @@ public class WebOnt extends TestBase {
         TestClasses tc = TestClasses.valueOf("CONSISTENCY");
         String d = "DL Test: t5.1\n" + "Non-finite model example from paper\n"
                 + "The concept should be coherent but has no finite model";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -1561,7 +1550,7 @@ public class WebOnt extends TestBase {
         TestClasses tc = TestClasses.valueOf("CONSISTENCY");
         String d = "DL Test: t5f.1\n" + "Non-finite model example from paper\n"
                 + "The concept should be coherent but has no finite model";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -1586,7 +1575,7 @@ public class WebOnt extends TestBase {
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "DL Test: t6.1\n" + "Double blocking example.\n"
                 + "The concept should be incoherent but needs double blocking";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -1611,7 +1600,7 @@ public class WebOnt extends TestBase {
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "DL Test: t6f.1\n" + "Double blocking example.\n"
                 + "The concept should be incoherent but needs double blocking";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -1634,7 +1623,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_description_logic_028";
         TestClasses tc = TestClasses.valueOf("CONSISTENCY");
         String d = "DL Test: t7.1";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -1657,7 +1646,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_description_logic_029";
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "DL Test: t7.2";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -1680,7 +1669,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_description_logic_030";
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "DL Test: t7.3";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -1703,7 +1692,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_description_logic_031";
         TestClasses tc = TestClasses.valueOf("CONSISTENCY");
         String d = "DL Test: t7f.1";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -1726,7 +1715,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_description_logic_032";
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "DL Test: t7f.2";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -1749,7 +1738,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_description_logic_033";
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "DL Test: t7f.3";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -1769,7 +1758,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_description_logic_034";
         TestClasses tc = TestClasses.valueOf("CONSISTENCY");
         String d = "DL Test: t8.1";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -1813,7 +1802,7 @@ public class WebOnt extends TestBase {
                 + "Everything is related to the spy via the property p and we know that the spy \n"
                 + "has at most two invP successors, thus limiting the cardinality of the domain \n"
                 + "to being at most 2.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -1904,7 +1893,7 @@ public class WebOnt extends TestBase {
                 + "Failure to cope with this kind of pattern is one\n"
                 + "of the reasons that many reasoners have been unable to \n"
                 + "cope with such ontologies.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -1929,7 +1918,7 @@ public class WebOnt extends TestBase {
         String d = "DL Test: heinsohn1.1\n"
                 + "Tbox tests from Heinsohn et al.\n"
                 + "Tests incoherency caused by disjoint concept";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -1954,7 +1943,7 @@ public class WebOnt extends TestBase {
         String d = "DL Test: heinsohn1.2\n"
                 + "Tbox tests from Heinsohn et al.\n"
                 + "Tests incoherency caused by disjoint concept";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -1979,7 +1968,7 @@ public class WebOnt extends TestBase {
         String d = "DL Test: heinsohn1.3\n"
                 + "Tbox tests from Heinsohn et al.\n"
                 + "Tests incoherency caused by disjoint concept";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -2004,7 +1993,7 @@ public class WebOnt extends TestBase {
         String d = "DL Test: heinsohn1.4\n"
                 + "Tbox tests from Heinsohn et al.\n"
                 + "Tests incoherency caused by disjoint concept";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -2027,7 +2016,7 @@ public class WebOnt extends TestBase {
         String d = "DL Test: heinsohn2.1\n"
                 + "Tbox tests from Heinsohn et al.\n"
                 + "Tests incoherency caused by number restrictions";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -2049,7 +2038,7 @@ public class WebOnt extends TestBase {
         String d = "DL Test: heinsohn2.2\n"
                 + "Tbox tests from Heinsohn et al.\n"
                 + "Tests incoherency caused by number restrictions";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -2084,7 +2073,7 @@ public class WebOnt extends TestBase {
         String d = "DL Test: heinsohn3.1\n"
                 + "Tbox tests from Heinsohn et al.\n"
                 + "Tests incoherency caused by number restrictions and role hierarchy";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -2121,7 +2110,7 @@ public class WebOnt extends TestBase {
         String d = "DL Test: heinsohn3.2\n"
                 + "Tbox tests from Heinsohn et al.\n"
                 + "Tests incoherency caused by number restrictions and role hierarchy";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -2146,7 +2135,7 @@ public class WebOnt extends TestBase {
         String d = "DL Test: heinsohn3c.1\n"
                 + "Tbox tests from Heinsohn et al.\n"
                 + "Tests incoherency caused by number restrictions and role hierarchy";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -2169,7 +2158,7 @@ public class WebOnt extends TestBase {
         String d = "DL Test: heinsohn4.1\n"
                 + "Tbox tests from Heinsohn et al.\n"
                 + "Tests role restrictions";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -2194,7 +2183,7 @@ public class WebOnt extends TestBase {
         String d = "DL Test: heinsohn4.2\n"
                 + "Tbox tests from Heinsohn et al.\n"
                 + "Tests role restrictions";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -2398,7 +2387,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_description_logic_201";
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "DL Test: \n" + "ABox test from DL98 systems comparison.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -2450,7 +2439,7 @@ public class WebOnt extends TestBase {
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "DL Test: k_lin\n"
                 + "ABox test from DL98 systems comparison.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -2485,7 +2474,7 @@ public class WebOnt extends TestBase {
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "DL Test: k_ph\n"
                 + "ABox test from DL98 systems comparison.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -2919,7 +2908,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_description_logic_503";
         TestClasses tc = TestClasses.valueOf("CONSISTENCY");
         String d = "This is a different encoding of test 501.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -3347,7 +3336,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_description_logic_504";
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "This is a different encoding of test 502.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -3432,7 +3421,7 @@ public class WebOnt extends TestBase {
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "DL Test: fact1.1\n" + "If a, b and c are disjoint, then:\n"
                 + "(a and b) or (b and c) or (c and a)\n" + "is unsatisfiable.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -3465,7 +3454,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_description_logic_602";
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "DL Test: fact2.1";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -3558,7 +3547,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_description_logic_603";
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "DL Test: fact3.1";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -3626,7 +3615,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_description_logic_604";
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "DL Test: fact4.1";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -3693,7 +3682,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_description_logic_605";
         TestClasses tc = TestClasses.valueOf("CONSISTENCY");
         String d = "DL Test: fact4.2";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -3791,7 +3780,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_description_logic_606";
         TestClasses tc = TestClasses.valueOf("CONSISTENCY");
         String d = "DL Test: t1.1";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -3892,7 +3881,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_description_logic_608";
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "DL Test: t1.3";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -3941,7 +3930,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_description_logic_609";
         TestClasses tc = TestClasses.valueOf("CONSISTENCY");
         String d = "DL Test: t10.1";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -4002,7 +3991,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_description_logic_610";
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "DL Test: t10.2";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -4057,7 +4046,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_description_logic_611";
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "DL Test: t10.3";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -4110,7 +4099,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_description_logic_612";
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "DL Test: t10.4";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -4171,7 +4160,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_description_logic_613";
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "DL Test: t10.5";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -4217,7 +4206,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_description_logic_614";
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "DL Test: t11.1";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -4278,7 +4267,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_description_logic_615";
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "DL Test: t12.1";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -4327,7 +4316,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_description_logic_616";
         TestClasses tc = TestClasses.valueOf("CONSISTENCY");
         String d = "DL Test: t2.1";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -4380,7 +4369,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_description_logic_617";
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "DL Test: t2.2";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -4473,7 +4462,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_description_logic_623";
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "DL Test: t4.1\n" + "Dynamic blocking example";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -4529,7 +4518,7 @@ public class WebOnt extends TestBase {
         TestClasses tc = TestClasses.valueOf("CONSISTENCY");
         String d = "DL Test: t5.1\n" + "Non-finite model example from paper\n"
                 + "The concept should be coherent but has no finite model";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -4580,7 +4569,7 @@ public class WebOnt extends TestBase {
         TestClasses tc = TestClasses.valueOf("CONSISTENCY");
         String d = "DL Test: t5f.1\n" + "Non-finite model example from paper\n"
                 + "The concept should be coherent but has no finite model";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -4643,7 +4632,7 @@ public class WebOnt extends TestBase {
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "DL Test: t6.1\n" + "Double blocking example.\n"
                 + "The concept should be incoherent but needs double blocking";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -4699,7 +4688,7 @@ public class WebOnt extends TestBase {
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "DL Test: t6f.1\n" + "Double blocking example.\n"
                 + "The concept should be incoherent but needs double blocking";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -4774,7 +4763,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_description_logic_628";
         TestClasses tc = TestClasses.valueOf("CONSISTENCY");
         String d = "DL Test: t7.1";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -4828,7 +4817,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_description_logic_629";
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "DL Test: t7.2";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -4877,7 +4866,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_description_logic_630";
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "DL Test: t7.3";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -4948,7 +4937,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_description_logic_631";
         TestClasses tc = TestClasses.valueOf("CONSISTENCY");
         String d = "DL Test: t7f.1";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -4997,7 +4986,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_description_logic_632";
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "DL Test: t7f.2";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -5043,7 +5032,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_description_logic_633";
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "DL Test: t7f.3";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -5096,7 +5085,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_description_logic_634";
         TestClasses tc = TestClasses.valueOf("CONSISTENCY");
         String d = "DL Test: t8.1";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -5145,7 +5134,7 @@ public class WebOnt extends TestBase {
         String d = "DL Test: heinsohn1.1\n"
                 + "Tbox tests from Heinsohn et al.\n"
                 + "Tests incoherency caused by disjoint concept";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -5205,7 +5194,7 @@ public class WebOnt extends TestBase {
         String d = "DL Test: heinsohn1.2\n"
                 + "Tbox tests from Heinsohn et al.\n"
                 + "Tests incoherency caused by disjoint concept";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -5254,7 +5243,7 @@ public class WebOnt extends TestBase {
         String d = "DL Test: heinsohn1.3\n"
                 + "Tbox tests from Heinsohn et al.\n"
                 + "Tests incoherency caused by disjoint concept";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -5298,7 +5287,7 @@ public class WebOnt extends TestBase {
         String d = "DL Test: heinsohn1.4\n"
                 + "Tbox tests from Heinsohn et al.\n"
                 + "Tests incoherency caused by disjoint concept";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -5338,7 +5327,7 @@ public class WebOnt extends TestBase {
         String d = "DL Test: heinsohn2.2\n"
                 + "Tbox tests from Heinsohn et al.\n"
                 + "Tests incoherency caused by number restrictions";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -5395,7 +5384,7 @@ public class WebOnt extends TestBase {
         String d = "DL Test: heinsohn4.1\n"
                 + "Tbox tests from Heinsohn et al.\n"
                 + "Tests role restrictions";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -5506,7 +5495,7 @@ public class WebOnt extends TestBase {
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "DL Test: k_lin\n"
                 + "ABox test from DL98 systems comparison.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -5584,7 +5573,7 @@ public class WebOnt extends TestBase {
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "DL Test: k_ph\n"
                 + "ABox test from DL98 systems comparison.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -5619,7 +5608,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_description_logic_901";
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "This entailment can be replicated for any three natural numbers i, j, k such that i+j >= k. In this example, they are chosen as 2, 3 and 5.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -5654,7 +5643,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_description_logic_902";
         TestClasses tc = TestClasses.valueOf("NEGATIVE_IMPL");
         String d = "This non-entailment can be replicated for any three natural numbers i, j, k such that i+j < k. In this example, they are chosen as 2, 3 and 6.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -5691,7 +5680,7 @@ public class WebOnt extends TestBase {
         TestClasses tc = TestClasses.valueOf("CONSISTENCY");
         String d = "This test shows integer multiplication in OWL DL.\n"
                 + "N is 2. M is 3. N times M is 6.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -5730,7 +5719,7 @@ public class WebOnt extends TestBase {
                 + "N times infinity is 2  times infinity. \n"
                 + "M times infinity is 3 times infinity. \n"
                 + "N times M times infinity is 5 times infinity.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -5748,7 +5737,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_differentFrom_001";
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "differentFrom is a SymmetricProperty.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -5770,7 +5759,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_disjointWith_001";
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "Disjoint classes have different members.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -5790,7 +5779,7 @@ public class WebOnt extends TestBase {
         TestClasses tc = TestClasses.valueOf("CONSISTENCY");
         String d = "If the owl:disjointWith edges in the graph form an undirected complete subgraph \n"
                 + "then this may be within OWL DL.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -5811,7 +5800,7 @@ public class WebOnt extends TestBase {
         String d = "This example has owl:disjointWith edges in the graph which cannot be generated\n"
                 + "by the mapping rules for DisjointClasses. Consider the lack of owl:disjointWith edge\n"
                 + "between nodes C and D.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -5832,7 +5821,7 @@ public class WebOnt extends TestBase {
         String d = "If the owl:disjointWith edges in the graph form unconnected\n"
                 + "undirected complete subgraphs\n"
                 + "then this may be within OWL DL.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -5853,7 +5842,7 @@ public class WebOnt extends TestBase {
         String d = "If the owl:disjointWith edges in the graph form\n"
                 + "undirected complete subgraphs which share blank nodes\n"
                 + "then this was not within OWL DL, but is permissible in OWL 2 DL.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -5875,7 +5864,7 @@ public class WebOnt extends TestBase {
                 + "undirected complete subgraphs which share URIref nodes\n"
                 + "but do not share blank node\n"
                 + "then this may be within OWL DL.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -5894,7 +5883,7 @@ public class WebOnt extends TestBase {
         TestClasses tc = TestClasses.valueOf("CONSISTENCY");
         String d = "A further example that cannot be generated from the mapping rule\n"
                 + "for DisjointClasses.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -5915,7 +5904,7 @@ public class WebOnt extends TestBase {
                 + "undirected complete subgraphs which share URIref nodes\n"
                 + "but do not share blank node\n"
                 + "then this may be within OWL DL.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -5944,7 +5933,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_equivalentClass_001";
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "Two classes may have the same class extension.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -5966,7 +5955,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_equivalentClass_002";
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "Two classes may be different names for the same set of individuals";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -5988,7 +5977,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_equivalentClass_003";
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "Two classes may be different names for the same set of individuals";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -6014,7 +6003,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_equivalentClass_004";
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "Two classes with the same complete description are equivalent.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -6038,7 +6027,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_equivalentClass_005";
         TestClasses tc = TestClasses.valueOf("NEGATIVE_IMPL");
         String d = "Two classes with the same partial description are not equivalent.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -6060,7 +6049,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_equivalentClass_006";
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "De Morgan's law.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -6083,7 +6072,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_equivalentClass_008_Direct";
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "A version of WebOnt-equivalentClass-008 modified for the Direct Semantics, under which annotations in the entailed ontology are ignored.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -6107,7 +6096,7 @@ public class WebOnt extends TestBase {
         TestClasses tc = TestClasses.valueOf("CONSISTENCY");
         String d = "A possible mapping of the EquivalentClasses axiom,\n"
                 + "which is connected but without a Hamiltonian path.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -6130,7 +6119,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_equivalentProperty_001";
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "hasLeader may be stated to be the owl:equivalentProperty of hasHead.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -6149,7 +6138,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_equivalentProperty_002";
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "A reasoner can also deduce that hasLeader is a subProperty of hasHead and hasHead is a subProperty of hasLeader.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -6168,7 +6157,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_equivalentProperty_003";
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "The inverse entailment of test 002 also holds.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -6194,7 +6183,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_equivalentProperty_004";
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "If p and q have the same property extension then p equivalentProperty q.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -6217,7 +6206,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_imports_011";
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "A Lite version of test <a xmlns=\"http://www.w3.org/1999/xhtml\" href=\"#imports-001\">imports-001</a>.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -6237,7 +6226,7 @@ public class WebOnt extends TestBase {
         TestClasses tc = TestClasses.valueOf("INCONSISTENCY");
         String d = "A property with maximum cardinality of two cannot take\n"
                 + "three distinct values on some subject node.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -6255,7 +6244,7 @@ public class WebOnt extends TestBase {
         TestClasses tc = TestClasses.valueOf("CONSISTENCY");
         String d = "Abstract syntax restrictions with multiple components\n"
                 + "are in OWL DL.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -6273,7 +6262,7 @@ public class WebOnt extends TestBase {
         TestClasses tc = TestClasses.valueOf("CONSISTENCY");
         String d = "This description cannot be expressed as a multicomponent restriction\n"
                 + "in the OWL 1 abstract syntax.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -6298,7 +6287,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_miscellaneous_302_Direct";
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "A version of WebOnt-miscellaneous-302 applicable under the Direct Semantics, in which the annotation in the entailed ontology is not considered.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -6313,7 +6302,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_miscellaneous_303";
         TestClasses tc = TestClasses.valueOf("CONSISTENCY");
         String d = "dc:creator may be declared as an annotation property.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -6331,7 +6320,7 @@ public class WebOnt extends TestBase {
                 + "individuals are distinct. Thus a consistent interpretation\n"
                 + "of this file is when all the individual names denote the\n"
                 + "same individual.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -6356,7 +6345,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_sameAs_001";
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "Annotation properties refer to a class instance. sameAs, in OWL Full, also refers to the class instance.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -6382,7 +6371,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_unionOf_003";
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "Sets with appropriate extensions are related by unionOf.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
@@ -6408,7 +6397,7 @@ public class WebOnt extends TestBase {
         String id = "WebOnt_unionOf_004";
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "An inverse to test <a xmlns=\"http://www.w3.org/1999/xhtml\" href=\"#unionOf-003\">003</a>.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }

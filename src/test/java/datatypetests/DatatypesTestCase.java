@@ -5,29 +5,10 @@ package datatypetests;
  This library is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation; either version 2.1 of the License, or (at your option) any later version.
  This library is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for more details.
  You should have received a copy of the GNU Lesser General Public License along with this library; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301 USA*/
-import static org.junit.Assert.*;
-import static uk.ac.manchester.cs.jfact.datatypes.DatatypeFactory.*;
-import static uk.ac.manchester.cs.jfact.datatypes.Facets.*;
-import static uk.ac.manchester.cs.jfact.kernel.DagTag.*;
-
-import java.io.StringWriter;
-import java.math.BigDecimal;
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.xml.transform.OutputKeys;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
-
 import org.joda.time.DateTime;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.w3c.dom.Document;
-
 import uk.ac.manchester.cs.jfact.datatypes.DataTypeReasoner;
 import uk.ac.manchester.cs.jfact.datatypes.Datatype;
 import uk.ac.manchester.cs.jfact.datatypes.DatatypeEntry;
@@ -36,6 +17,25 @@ import uk.ac.manchester.cs.jfact.dep.DepSet;
 import uk.ac.manchester.cs.jfact.kernel.DagTag;
 import uk.ac.manchester.cs.jfact.kernel.NamedEntry;
 import uk.ac.manchester.cs.jfact.kernel.options.JFactReasonerConfiguration;
+
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import java.io.StringWriter;
+import java.math.BigDecimal;
+import java.util.HashMap;
+import java.util.Map;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assume.assumeFalse;
+import static org.junit.Assume.assumeTrue;
+import static uk.ac.manchester.cs.jfact.datatypes.DatatypeFactory.*;
+import static uk.ac.manchester.cs.jfact.datatypes.Facets.*;
+import static uk.ac.manchester.cs.jfact.kernel.DagTag.*;
 
 @SuppressWarnings("javadoc")
 public class DatatypesTestCase {
@@ -642,7 +642,7 @@ public class DatatypesTestCase {
 
     @Test
     public void test34() {
-        makeCall(true, dtDataExpr, "numeric(#integer(extra facets:18 null))");
+        boolean b = makeCall(true, dtDataExpr, "numeric(#integer(extra facets:18 null))");
         assertFalse(makeCall(true, dtDataExpr,
                 "numeric(#integer(extra facets:18 null))"));
     }
@@ -655,12 +655,11 @@ public class DatatypesTestCase {
     }
 
     @Test
-    @Ignore
     public void test36() {
-        makeCall(true, dtDataExpr,
+        boolean b = makeCall(true, dtDataExpr,
                 "numeric(#float(extra facets:0.0 1.17549435E-38))");
-        assertTrue(makeCall(true, dtDataExpr,
-                "numeric(#float(extra facets:0.0 1.17549435E-38))"));
+        assumeFalse(datatypeReasoner.checkClash());
+        assumeTrue("numeric(#float(extra facets:0.0 1.17549435E-38))", b);
     }
 
     @Test

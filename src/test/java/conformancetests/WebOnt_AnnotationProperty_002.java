@@ -37,7 +37,7 @@ public class WebOnt_AnnotationProperty_002 extends TestBase {
         String id = "WebOnt_AnnotationProperty_002";
         TestClasses tc = TestClasses.valueOf("POSITIVE_IMPL");
         String d = "In OWL 1, this test was used to expose differences between the RDF Based and Direct semantics.  In OWL 2, the entailment ontology holds under both semantics.  Under the OWL 2 Direct Semantics, annotations in the conclusion ontology are ignored, so the only axiom evaluated in ClassAssertion(owl:Thing _:x).  Under the OWL 2 RDF Based semantics, annotations are relevant, and in this test, the entailment holds.";
-        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d);
+        JUnitRunner r = new JUnitRunner(premise, conclusion, id, tc, d, JUnitRunner.AssertOrAssume.USE_ASSERT);
         r.setReasonerFactory(factory());
         r.run();
     }
